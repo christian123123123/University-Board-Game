@@ -1,0 +1,29 @@
+<div class="dialog-container">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <h3>Entrer le code d'accès d'une partie</h3>
+    <br />
+    <br />
+
+    <div class="code-input-container">
+        <input
+            type="text"
+            name="code"
+            [(ngModel)]="accessCode"
+            placeholder="Entrer le code"
+            maxlength="4"
+            minlength="4"
+            pattern="[0-9]*"
+            (keypress)="this.joinCodeService.validateInput($event)"
+            [ngClass]="{ error: errorMessage }"
+        />
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </div>
+    <br />
+    <br />
+
+    <div class="button-container">
+        <button (click)="onSubmit()" routerLink="join" class="button">Soumettre</button>
+        <button (click)="onCancel()" class="button" id="cancel-button">Annuler</button>
+    </div>
+</div>

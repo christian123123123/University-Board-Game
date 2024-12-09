@@ -1,0 +1,11 @@
+<div class="container justified">
+    <app-home-button></app-home-button>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <h1>Liste des jeux</h1>
+    <app-game-list [filteredVisibility]="false"></app-game-list>
+    <section class="add-option">
+        <button (click)="handleClickCreateGame()" class="button">Créer un nouveau jeu</button>
+        <button (click)="handleImport()" class="button">Importer un jeu</button>
+    </section>
+</div>

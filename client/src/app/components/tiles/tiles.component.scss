@@ -1,0 +1,43 @@
+.objects {
+    display: flex;
+}
+
+.object {
+    border: solid 1px purple;
+    width: 70px;
+    height: 70px; 
+    position: relative;  
+
+} 
+
+.tile-description {
+    display: none; 
+    position: absolute;
+    bottom: -25px; 
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white;
+    padding: 5px;
+    font-size: 10px;
+    border-radius: 5px;
+    width: 350px; 
+    text-align: center;
+}
+
+
+.object:hover .tile-description {
+    display: block;
+}
+
+.object:hover {
+    border: solid 3px gold;
+}
+
+.object img {
+    height: 100%;
+    width: 100%;
+}
+
+.object.selected {
+    border: 3px gold solid;
+}

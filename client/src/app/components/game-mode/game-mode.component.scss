@@ -1,0 +1,100 @@
+.dialog-container {
+    width: 600px;
+    padding: 20px;
+    border: 2px solid #00fffb;
+    background: linear-gradient(180deg, #0a0a0a, #1a1a1a);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    color: #00fffb;
+    box-shadow: 0px 0px 20px #00fffb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: url('../../../assets/cursor.png'), auto;
+}
+
+h3 {
+    text-shadow: 4px 4px 10px #f700ff;
+    margin-bottom: 15px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.option-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(1, 1, 1, 0.9);
+    padding: 15px;
+    border: 2px solid #00fffb;
+    border-radius: 15px;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        color 0.3s ease;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.option-card:hover {
+    background-color: #ffffff;
+    color: #000;
+    box-shadow: 0px 2px 20px #00fffb;
+}
+
+.option-card.selected {
+    background-color: #00fffb;
+    color: #000;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.button {
+    background-color: rgba(1, 1, 1, 0.8);
+    color: white;
+    width: 140px;
+    height: 45px;
+    border-radius: 25px;
+    border: 2px solid #ffffff;
+    font-size: 17px;
+    font-family: 'Orbitron', sans-serif;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: #000;
+    box-shadow: 0px 4px 15px #00fffb;
+}
+.button.disabled {
+    background-color: #454545;
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: 0px 0px 0px #ffffff;
+}
+
+#cancel-button {
+    margin-left: 20px;
+}

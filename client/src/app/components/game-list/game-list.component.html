@@ -1,0 +1,84 @@
+<section class="container-list-games">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <ul class="list-games">
+        <li *ngFor="let game of games">
+            <div *ngIf="!filteredVisibility || game.visibility">
+                <div class="game-info" *ngIf="currentRoute === 'admin'">
+                    <div class="game-details-board-wrapper">
+                        <div class="game-details">
+                            <h2 class="game-title">
+                                <strong>{{ game.title }}</strong>
+                            </h2>
+                            <p><strong>Taille de la carte :</strong> {{ game.mapSize }}</p>
+                            <p><strong>Mode de jeu:</strong> {{ game.mode }}</p>
+                            <p>
+                                <strong>Date des dernières modifications :</strong>
+                                {{ game.updatedAt | date: 'yyyy/MM/dd - HH:mm:ss' : 'America/Montreal' }}
+                            </p>
+                            <p *ngIf="!filteredVisibility"><strong>Visibilité :</strong> {{ game.visibility ? 'visible' : 'caché' }}</p>
+                            <div class="description-box" *ngIf="isBoardHovered">
+                                <strong>Description du jeu :</strong>
+                                <p class="description">{{ game.description }}</p>
+                            </div>
+                        </div>
+                        <div class="board-placement" (mouseenter)="onBoardHover()" (mouseleave)="onBoardLeave()">
+                            <div class="board-grid" [ngClass]="game.mapSize">
+                                <div class="row" *ngFor="let row of this.boardService.getFlippedBoard(game.board)">
+                                    <div class="tile" *ngFor="let tile of row">
+                                        <img *ngIf="tile.object" [src]="tile.object" alt="Object" class="object-image" />
+                                        <img [src]="tile.fieldTile" alt="Tile Image" class="tile-image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-game-buttons">
+                        <button class="visibility-button" (click)="this.gameListService.toggleVisibility(game); $event.stopPropagation()">
+                            <i [ngClass]="game.visibility ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                        </button>
+                        <button class="edit-game-button" (click)="this.gameListService.editGame(game); $event.stopPropagation()">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button class="delete-game-button" (click)="this.gameListService.deleteButton(this, game); $event.stopPropagation()">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <button class="export-game-button" (click)="this.gameListService.exportButton(game)">
+                            <i class="fa fa-file"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="game-info" *ngIf="currentRoute === 'create'" (click)="this.gameListService.onGameClick(this, game)">
+                    <div class="game-details-board-wrapper">
+                        <div class="game-details">
+                            <h2 class="game-title">
+                                <strong>{{ game.title }}</strong>
+                            </h2>
+                            <p><strong>Taille de la carte :</strong> {{ game.mapSize }}</p>
+                            <p><strong>Mode de jeu:</strong> {{ game.mode }}</p>
+                            <p>
+                                <strong>Date des dernières modifications :</strong>
+                                {{ game.updatedAt | date: 'yyyy/MM/dd - HH:mm:ss' : 'America/Montreal' }}
+                            </p>
+                            <div class="description-box" *ngIf="isBoardHovered">
+                                <strong>Description du jeu :</strong>
+                                <p class="description">{{ game.description }}</p>
+                            </div>
+                        </div>
+                        <div class="board-placement" (mouseenter)="onBoardHover()" (mouseleave)="onBoardLeave()">
+                            <div class="board-grid" [ngClass]="game.mapSize">
+                                <div class="row" *ngFor="let row of this.boardService.getFlippedBoard(game.board)">
+                                    <div class="tile" *ngFor="let tile of row">
+                                        <img *ngIf="tile.object" [src]="tile.object" alt="Object" class="object-image" />
+                                        <img [src]="tile.fieldTile" alt="Tile Image" class="tile-image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>

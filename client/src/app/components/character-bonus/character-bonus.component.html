@@ -1,0 +1,27 @@
+<div *ngIf="selectedCharacter" class="bonus-dice-container">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <div class="bonus-section">
+        <h3>Assigner un bonus +2</h3>
+        <div class="button-container">
+            <div class="option-card" (click)="applyBonus('health')" [ngClass]="{ selected: bonusAppliedState.health }">
+                <span>+2 à Vie</span>
+            </div>
+            <div class="option-card" (click)="applyBonus('speed')" [ngClass]="{ selected: bonusAppliedState.speed }">
+                <span>+2 à Rapidité</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="dice-section">
+        <h3>Assigner un dé</h3>
+        <div class="button-container">
+            <div class="option-card" (click)="assignDice('attack')" [ngClass]="{ selected: diceAssignedState.attack }">
+                <span>Dé 6 à Attaque, Dé 4 à Défense</span>
+            </div>
+            <div class="option-card" (click)="assignDice('defense')" [ngClass]="{ selected: diceAssignedState.defense }">
+                <span>Dé 6 à Défense, Dé 4 à Attaque</span>
+            </div>
+        </div>
+    </div>
+</div>

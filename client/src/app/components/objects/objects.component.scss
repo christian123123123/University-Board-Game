@@ -1,0 +1,65 @@
+.container {
+    position: relative;
+}
+
+.objects {
+    display: flex;
+    flex-direction: row;
+}
+
+.object {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px purple;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.object-description {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    font-size: 10px;
+    border-radius: 5px;
+    width: 450px;
+    text-align: center;
+    z-index: 10;
+}
+
+.object:hover .object-description {
+    display: block;
+}
+
+.object:hover {
+    background-color: gold;
+}
+
+.object img {
+    height: 100%;
+    width: 100%;
+}
+
+.item-count {
+    position: absolute;
+    bottom: 5px;
+    right: 1px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2px 5px;
+    font-size: 12px;
+    border-radius: 3px;
+    font-family: 'Arial', sans-serif;
+    z-index: 1;
+}
+
+.object.used {
+    opacity: 0.5;
+}

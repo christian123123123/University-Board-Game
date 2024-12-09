@@ -1,0 +1,77 @@
+<div class="waiting-room-container">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <div class="chat-box-container">
+        <app-chat-box
+            *ngIf="accessCode"
+            [accessCode]="accessCode"
+            [player]="this.player"
+            [welcomeMessage]="welcomeMessage"
+            [roomHistory]="chatRoomHistory"
+        ></app-chat-box>
+    </div>
+    <div class="right-container justified">
+        <h1>Chambre d'attente</h1>
+        <h3>Utilisateurs actifs dans le salon:</h3>
+        <div class="list-container">
+            <ul>
+                <li *ngFor="let user of this.roomUsers[this.accessCode]">
+                    <div class="user-item">
+                        <img class="user-avatar" [src]="user.character.face" [alt]="user.username + ' avatar'" />
+                        <div class="user-info">
+                            <span class="user-name">{{ user.username }}</span>
+                            <span *ngIf="user.isAdmin" class="user-role-admin">Admin</span>
+                            <span *ngIf="!user.isAdmin && !user.isVirtual" class="user-role-player">Joueur</span>
+                            <span *ngIf="user.isVirtual" class="user-role-virtual">Joueur virtuel</span>
+                        </div>
+
+                        <span *ngIf="isAdmin && user.username !== this.player.username" class="kick-button-container">
+                            <button (click)="this.waitingRoomService.kickPlayer(this, user)" class="kick-button">Kick</button>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div *ngIf="isAdmin" class="add-virtual-player-container">
+            <button (click)="openProfileDialog()" [disabled]="this.waitingRoomService.isLobbyFull(this)">Ajouter un joueur virtuel</button>
+        </div>
+        <h3 *ngIf="accessCode">
+            Code d'accès: <span class="access-code">{{ accessCode }}</span>
+        </h3>
+        <h3 *ngIf="isAdmin && !this.waitingRoomService.isLobbyFull(this)" class="visibility-container">
+            <strong>Accessibilité:</strong>
+            <span class="access-code">{{ isAccessible ? 'deverrouillé' : 'verrouillé' }}</span>
+            <span class="visibility-toggle">
+                <button class="visibility-button" (click)="this.waitingRoomService.toggleAccessibility(this); $event.stopPropagation()">
+                    <i [ngClass]="isAccessible ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                </button>
+            </span>
+        </h3>
+        <h3 *ngIf="isAdmin && this.waitingRoomService.isLobbyFull(this)" class="visibility-container">
+            <strong>Accessibilité:</strong>
+            <span class="access-code">{{ 'verrouillé' }}</span>
+            <span class="visibility-toggle">
+                <button class="visibility-button" (click)="$event.stopPropagation()">
+                    <i [ngClass]="'fa fa-eye-slash'"></i>
+                </button>
+            </span>
+        </h3>
+
+        <p *ngIf="!accessCode" class="loading">Generating access code...</p>
+
+        <div class="button-container">
+            <button
+                class="btn Play"
+                *ngIf="isAdmin"
+                [disabled]="!this.waitingRoomService.isLobbyReady(this) || isAccessible"
+                [ngClass]="{ disabled: !this.waitingRoomService.isLobbyReady(this) || isAccessible }"
+                (click)="this.waitingRoomService.onPlayMatch(this)"
+            >
+                Jouer
+            </button>
+            <button (click)="this.waitingRoomService.onLeaveMatch(this)" class="btn Leave">Quitter</button>
+        </div>
+    </div>
+</div>

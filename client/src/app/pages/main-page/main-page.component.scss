@@ -1,0 +1,97 @@
+.container {
+    min-height: 100vh;
+    height: auto;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+    color: #00fffb;
+    text-shadow: 4px 4px 4px #f700ff;
+    width: 100%;
+    background-image: url('../../../assets/starry-sky.png');
+    background-size: cover;
+    animation: moveStars 85s linear infinite;
+    cursor: url('../../../assets/cursor.png'), auto;
+}
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px -10000px;
+    }
+}
+
+.justified {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #00fffb;
+    box-shadow: 5px 5px 5px 5px #f700ff;
+    border-radius: 100%;
+    color: #f700ff;
+    text-shadow: 2px 2px 2px #f700ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    margin-top: 50px;
+    margin-bottom: -85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+#menu-options button:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0px 4px 10px #00fffb;
+}
+
+#menu-options button {
+    cursor: url('../../../assets/cursor.png'), auto;
+    background-color: rgba(1, 1, 1, 0);
+    color: white;
+    width: 350px;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 2px solid white;
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+.team-name {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.header-item {
+    justify-content: center;
+    text-align: center;
+}
+
+.footer-item {
+    font-size: 17px;
+    text-align: center;
+}
+
+.footer-item p :nth-child(even) {
+    color: #00fffb;
+}
+
+.footer-item p :nth-child(odd) {
+    color: #f700ff;
+}

@@ -1,0 +1,38 @@
+<div class="dialog-container">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <h3>Choisir mode de jeu</h3>
+    <div class="label-container">
+        <div class="option-card" (click)="selectGameMode('capture the flag')" [class.selected]="selectedGameMode === 'capture the flag'">
+            <span>Capture the flag</span>
+        </div>
+        <div class="option-card" (click)="selectGameMode('classique')" [class.selected]="selectedGameMode === 'classique'">
+            <span>Classique</span>
+        </div>
+    </div>
+
+    <h3>Choisir grandeur de la map</h3>
+    <div class="label-container">
+        <div class="option-card" (click)="selectMapSize('petite')" [class.selected]="selectedMapSize === 'petite'">
+            <span>Petite: 2 joueurs 10x10</span>
+        </div>
+        <div class="option-card" (click)="selectMapSize('moyenne')" [class.selected]="selectedMapSize === 'moyenne'">
+            <span>Moyenne: 2-4 joueurs 15x15</span>
+        </div>
+        <div class="option-card" (click)="selectMapSize('grande')" [class.selected]="selectedMapSize === 'grande'">
+            <span>Grande: 4-6 joueurs 20x20</span>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button 
+        (click)="onSubmit()" 
+        [disabled]="!selectedGameMode || !selectedMapSize" 
+        class="button" 
+        [ngClass]="{'disabled': !selectedGameMode || !selectedMapSize}">
+        Soumettre
+        </button>
+        <button (click)="onCancel()" class="button" id="cancel-button">Annuler</button>
+    </div>
+    
+</div>

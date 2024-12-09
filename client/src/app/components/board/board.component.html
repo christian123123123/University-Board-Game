@@ -1,0 +1,27 @@
+<div class="board-container" (mouseup)="onMouseUp()">
+    <section *ngFor="let row of board; let rowIndex = index" class="board-row">
+        <div
+            *ngFor="let tile of row; let colIndex = index"
+            class="board-square"
+            (mousedown)="selectTile($event, rowIndex, colIndex)"
+            (mousemove)="onMouseMove($event)"
+            (dragover)="this.dragEventService.onDragOver($event)"
+            (drop)="this.dragEventService.onDrop($event, rowIndex, colIndex, this)"
+            [attr.data-row]="rowIndex"
+            [attr.data-col]="colIndex"
+        >
+            <img
+                *ngIf="tile.object"
+                [src]="tile.object"
+                alt="Object"
+                class="object-image"
+                [draggable]="true"
+                (dragstart)="this.dragEventService.onDragStartFromTile($event, tile, this)"
+            />
+            <img [src]="tile.fieldTile" alt="" class="tile-image" />
+            <div *ngIf="tile.object" class="object-description">
+                {{ this.objectsService.getObjectDescription(tile) }}
+            </div>
+        </div>
+    </section>
+</div>

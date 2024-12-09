@@ -1,0 +1,287 @@
+.container {
+    min-height: 100vh;
+    height: auto;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+    color: #00fffb;
+    width: 100%;
+    background-image: url('../../../assets/starry-sky.png');
+    background-size: cover;
+    animation: moveStars 85s linear infinite;
+    cursor: url('../../../assets/cursor.png'), auto;
+}
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px -10000px;
+    }
+}
+
+.header {
+    margin-bottom: -40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 0;
+    margin-left: 232px;
+}
+
+.header h1 {
+    font-size: 50px;
+    color: #fff;
+    text-shadow: 0 0 10px #00d4ff;
+}
+
+.header button {
+    margin-top: 10px;
+    margin-left: 270px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    color: #00fffb;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00fffb;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 251, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+}
+
+.header button:hover {
+    color: black;
+    background-color: #00fffb;
+    border-color: white;
+    box-shadow: 0 0 20px #00fffb, inset 0 0 10px #f700ff;
+    transform: scale(1.05);
+}
+
+.header button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px #00fffb, inset 0 0 20px #00fffb;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+    gap: 20px;
+}
+
+.table-outline {
+    box-shadow: 0 0 10px #fff;
+    border-radius: 12px;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.stats-table thead {
+    background: linear-gradient(to right, #f700ff, #090979);
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Orbitron', sans-serif;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+}
+
+.stats-table th {
+    color: #00fffb;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+.stats-table th span {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.stats-table tbody tr {
+    height: calc(100% / 6);
+}
+
+.stats-table th:hover {
+    background-color: rgba(0, 255, 251, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.player-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.player-avatar {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #00fffb;
+    box-shadow: 0 0 7px #f700ff;
+    margin: 0 auto;
+    display: block;
+}
+
+.player-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #00fffb;
+    margin: -5px 0px 5px 0px;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 2px 2px 4px #f700ff;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.stats-table tbody tr:hover {
+    background-color: rgba(0, 255, 251, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.stats-section {
+    text-align: center;
+    margin: 0 auto;
+    width: 65%;
+    height: 600px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.right-section {
+    flex: 0.7;
+    width: 50px;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 0 10px #fff;
+    padding: 20px;
+    color: white;
+    margin-right: 60px;
+    margin-top: 21px;
+    gap: 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+}
+
+.sub-toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.sub-toggle-button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: 'Orbitron', sans-serif;
+    font-style: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.sub-toggle-button.active {
+    background-color: #00fffb;
+    color: #333;
+    box-shadow: 0 3px 5px rgba(0, 255, 251, 0.5);
+}
+
+.sub-toggle-button:hover {
+    background-color: #00fffb;
+    color: #333;
+}
+
+.chat-box-container,
+.stats-container {
+    flex: 1;
+    background-color: #1a1a1d;
+    font-family: 'Orbitron', sans-serif;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.chat-box-container .outerChatContainer {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #2d2d34;
+    color: white;
+}
+
+.global-stats {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: 'Orbitron', sans-serif;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #fff;
+    color: white;
+    height: 61vh;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stats-container h2 {
+    color: #00fffb;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px #f700ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+}
+
+.stats-container ul {
+    list-style: none;
+    padding: 10px;
+}
+
+.stats-container ul li {
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ddd;
+    padding: 20px 0px 20px 0px;
+}
+
+.small-chat-wrapper .outerChatContainer {
+    height: 63vh !important;
+}

@@ -1,0 +1,27 @@
+<div class="outerChatContainer">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <button (click)="toggleUserMessages()">
+        {{ !showUserMessagesOnly ? 'Afficher les messages vous mentionnant' : 'Afficher tous les messages' }}
+    </button>
+
+    <div *ngIf="!showUserMessagesOnly" class="messagesContainer" #messagesContainer>
+        <p class="serverMessage">{{ welcomeMessage }}</p>
+        <div *ngFor="let message of roomJournal">
+            <p class="serverMessage">
+                {{ message.text }}
+            </p>
+        </div>
+    </div>
+
+    <div *ngIf="showUserMessagesOnly" class="messagesContainer" #messagesContainer>
+        <p class="serverMessage">{{ welcomeMessage }}</p>
+        <div *ngFor="let message of roomJournal">
+            <div *ngIf="isUserMentionned(message, player)">
+                <p class="serverMessage">
+                    {{ message.text }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

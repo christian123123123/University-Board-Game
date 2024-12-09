@@ -1,0 +1,55 @@
+<div class="character-details" [class.game-route]="currentRoute === 'game'" *ngIf="selectedCharacter">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <div class="character-card">
+        <div class="character-avatar" *ngIf="currentRoute !== 'game'">
+            <img [src]="selectedCharacter.image" alt="selectedCharacter.name" />
+        </div>
+        <div class="character-info">
+            <h2 class="character-name" *ngIf="currentRoute !== 'game'">{{ selectedCharacter.name }}</h2>
+            <div class="stat" title="Le nombre de points de vie du personnage correspond à cet attribut.">
+                <span class="stat-name" id="health">Vie:</span>
+                <div class="stat-bar">
+                    <div
+                        class="stat-fill life-bar"
+                        [style.width]="getStatWidth(this.selectedCharacter.stats.health, this.MAX_VALUE_HEALTH_SPEED)"
+                    ></div>
+                </div>
+                <span class="stat-value">{{ selectedCharacter.stats.health }}</span>
+            </div>
+
+            <div class="stat" title="Sert à déterminer l’ordre des tours et correspond aussi aux points de mouvement par tour d’un personnage.">
+                <span class="stat-name" id="speed">Rapidité:</span>
+                <div class="stat-bar">
+                    <div
+                        class="stat-fill speed-bar"
+                        [style.width]="getStatWidth(this.selectedCharacter.stats.speed, this.MAX_VALUE_HEALTH_SPEED)"
+                    ></div>
+                </div>
+                <span class="stat-value">{{ selectedCharacter.stats.speed }}</span>
+            </div>
+
+            <div class="stat" title="Représente la force avec laquelle une attaque est faite sur l’adversaire.">
+                <span class="stat-name" id="attack">Attaque:</span>
+                <div class="stat-bar">
+                    <div
+                        class="stat-fill attack-bar"
+                        [style.width]="getStatWidth(this.selectedCharacter.stats.attack, this.MAX_VALUE_ATTACK_DEFENSE)"
+                    ></div>
+                </div>
+                <span class="stat-value">{{ selectedCharacter.stats.attack }}</span>
+            </div>
+
+            <div class="stat" title="Représente la capacité à bloquer l’attaque d’un adversaire.">
+                <span class="stat-name" id="defense">Défense:</span>
+                <div class="stat-bar">
+                    <div
+                        class="stat-fill defense-bar"
+                        [style.width]="getStatWidth(this.selectedCharacter.stats.defense, this.MAX_VALUE_ATTACK_DEFENSE)"
+                    ></div>
+                </div>
+                <span class="stat-value">{{ selectedCharacter.stats.defense }}</span>
+            </div>
+        </div>
+    </div>
+</div>

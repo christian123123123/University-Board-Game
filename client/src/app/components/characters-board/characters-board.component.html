@@ -1,0 +1,14 @@
+<div class="dialog">
+    <div class="character-grid">
+        <div *ngFor="let row of grid; let rowIndex = index" class="board-row">
+            <div
+                *ngFor="let square of row; let colIndex = index"
+                class="character board-square"
+                (click)="square && !square.disabled ? onCharacterSelection(square) : null"
+                [ngClass]="{ disabled: square?.disabled }"
+            >
+                <img *ngIf="square" [src]="square.face" [alt]="square.name" />
+            </div>
+        </div>
+    </div>
+</div>

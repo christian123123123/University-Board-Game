@@ -1,0 +1,14 @@
+<div class="dialog-container">
+    <h2>Choisissez le profil du joueur virtuel</h2>
+    <div class="label-container">
+        <div class="option-card" (click)="selectProfile('agressif')" [class.selected]="selectedProfile === 'agressif'">
+            <span>Agressif</span>
+        </div>
+        <div class="option-card" (click)="selectProfile('defensif')" [class.selected]="selectedProfile === 'defensif'">
+            <span>Defensif</span>
+        </div>
+    </div>
+    <button (click)="submitSelection()" [disabled]="!selectedProfile" 
+    class="button"
+    [ngClass]="{'disabled': !selectedProfile}">Soumettre</button>
+</div>

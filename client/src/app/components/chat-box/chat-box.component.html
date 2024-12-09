@@ -1,0 +1,74 @@
+<div class="outerChatContainer" [ngStyle]="{ height: currentRoute === 'game' ? '45vh' : '90vh' }">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <h1>{{ player.username }}</h1>
+
+    <div class="messagesContainer" #messagesContainer>
+        <div *ngFor="let message of roomHistory">
+            <p *ngIf="message.user === 'server'" class="serverMessage">
+                {{ message.text }}
+            </p>
+            <div *ngIf="message.user !== 'server' && message.user === player.username" class="messageContainer justifyEnd">
+                <section class="nameOverTextBlue">
+                    <p class="sentText pr-10">{{ player.username }}</p>
+                    <section class="timeNextToText">
+                        <p class="sentTextTime">{{ message.time }}</p>
+                        <div class="messageBox backgroundBlue">
+                            <p class="messageText colorWhite">{{ message.text }}</p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <div *ngIf="message.user !== 'server' && message.user !== player.username" class="messageContainer justifyStart">
+                <section class="nameOverTextGray">
+                    <p class="sentText pl-10">{{ message.user }}</p>
+                    <section class="timeNextToText">
+                        <div class="messageBox backgroundLight">
+                            <p class="messageText colorDark">{{ message.text }}</p>
+                        </div>
+                        <p class="sentTextTime">{{ message.time }}</p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <p class="serverMessage">{{ welcomeMessage }}</p>
+
+        <div *ngFor="let message of messages">
+            <div *ngIf="currentRoute === 'waiting-room'">
+                <p *ngIf="message.user === 'server'" class="serverMessage">
+                    {{ message.text }}
+                </p>
+            </div>
+            <div *ngIf="message.user !== 'server' && message.user === player.username" class="messageContainer justifyEnd">
+                <section class="nameOverTextBlue">
+                    <p class="sentText pr-10">{{ player.username }}</p>
+                    <section class="timeNextToText">
+                        <p class="sentTextTime">{{ message.time }}</p>
+                        <div class="messageBox backgroundBlue">
+                            <p class="messageText colorWhite">{{ message.text }}</p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <div *ngIf="message.user !== 'server' && message.user !== player.username" class="messageContainer justifyStart">
+                <section class="nameOverTextGray">
+                    <p class="sentText pl-10">{{ message.user }}</p>
+                    <section class="timeNextToText">
+                        <div class="messageBox backgroundLight">
+                            <p class="messageText colorDark">{{ message.text }}</p>
+                        </div>
+                        <p class="sentTextTime">{{ message.time }}</p>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <section class="inputBox">
+        <input [(ngModel)]="inputMessage" (keydown.enter)="sendMessage()" maxlength="200" />
+        <button class="sendButton" (click)="sendMessage()">
+            <img class="paperPlane" src="assets/paperPlane.png" alt="plane" />
+        </button>
+    </section>
+</div>

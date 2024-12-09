@@ -1,0 +1,71 @@
+<div class="background-overlay"></div>
+<div class="dialog-container">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+    <div class="player-info" *ngIf="this.myPlayer!.username === data.fightStarterAfterDice.username">
+        <h3 class="player-name">{{ this.myPlayer!.username }}</h3>
+        <app-character-stats [selectedCharacter]="this.myPlayer!.character"></app-character-stats>
+    </div>
+    <div class="player-info" *ngIf="this.myPlayer!.username === data.victimPlayerAfterDice.username">
+        <h3 class="player-name">{{ this.myPlayer!.username }}</h3>
+        <app-character-stats [selectedCharacter]="this.myPlayer!.character"></app-character-stats>
+    </div>
+
+    <div class="center-container">
+        <button class="rage-quit-button" (click)="quitFight()">Abandonner</button>
+        <div class="combat-interface-container">
+            <div class="combat-interface">
+                <div class="combat-timer">
+                    <strong> Temps restant pour l'action: {{ roundTimeLeft }}s </strong>
+                </div>
+
+                <div class="info-detail">
+                    <strong>Nombre de tentatives restantes: </strong>
+                    <span>{{ escapeAttempts[sharedService.getPlayer().username] }}</span>
+                </div>
+
+                <!-- <div class="info-detail">
+                    <strong>current fighter: </strong>
+                    <span>{{ this.activePlayer!.username }}</span>
+                </div> -->
+
+                <h3 class="stats-title">Vos statistiques de combat</h3>
+                <div class="info-detail">
+                    <div>
+                        <strong>Dé d'attaque: </strong>
+                        <span>{{ this.myPlayer!.character!.stats!.attack - this.myPlayerBeforeDice.character.stats.attack }}</span>
+                    </div>
+                    <div>
+                        <strong>Dé de défense: </strong>
+                        <span>{{ this.myPlayer!.character!.stats!.defense - this.myPlayerBeforeDice.character.stats.defense }}</span>
+                    </div>
+                </div>
+
+                <div class="combat-button-container">
+                    <button class="button" id="attack-button" (click)="performAttack()" [disabled]="!isActiveFighter">Attaque</button>
+                    <button class="button" id="evasion-button" (click)="attemptEscape()" [disabled]="!isActiveFighter || noMoreEscapes">
+                        Évasion
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="journal-container">
+            <app-journal-box
+                *ngIf="this.sharedService.getAccessCode()"
+                [accessCode]="this.sharedService.getAccessCode()"
+                [player]="this.myPlayer!"
+                [roomJournal]="roomJournal"
+            >
+            </app-journal-box>
+        </div>
+    </div>
+
+    <div class="player-info" *ngIf="this.myPlayer!.username !== data.fightStarterAfterDice.username">
+        <h3 class="player-name">{{ this.opponentPlayer!.username }}</h3>
+        <app-character-stats [selectedCharacter]="this.opponentPlayer!.character"></app-character-stats>
+    </div>
+    <div class="player-info" *ngIf="this.myPlayer!.username !== data.victimPlayerAfterDice.username">
+        <h3 class="player-name">{{ this.opponentPlayer!.username }}</h3>
+        <app-character-stats [selectedCharacter]="this.opponentPlayer!.character"></app-character-stats>
+    </div>
+</div>

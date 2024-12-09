@@ -1,0 +1,21 @@
+<div class="board-container">
+    <div *ngFor="let row of board; let rowIndex = index" class="board-row">
+        <div
+            *ngFor="let tile of row; let colIndex = index"
+            class="board-square"
+            [ngClass]="{
+                'highlighted-path': tile.isTileSelected,
+                'preview-path': movementService.showPreviewPath && movementService.isInExactPreviewPath(rowIndex, colIndex),
+                horizontal: movementService.showPreviewPath && movementService.isInExactPreviewPath(rowIndex, colIndex, 'horizontal'),
+                vertical: movementService.showPreviewPath && movementService.isInExactPreviewPath(rowIndex, colIndex, 'vertical')
+            }"
+            (mouseenter)="previewPath(rowIndex, colIndex)"
+            (mouseleave)="movementService.clearPreviewPath()"
+            (mousedown)="actionMode ? performActionOnTile(rowIndex, colIndex) : selectDestination($event, rowIndex, colIndex)"
+        >
+            <img *ngIf="tile.avatar" [src]="tile.avatar" alt="Object" class="user-avatar" />
+            <img *ngIf="tile.object" [src]="tile.object" alt="Object" class="object-image" />
+            <img [src]="tile.fieldTile" alt="" class="tile-image" />
+        </div>
+    </div>
+</div>

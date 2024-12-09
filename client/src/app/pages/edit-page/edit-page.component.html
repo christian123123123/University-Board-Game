@@ -1,0 +1,50 @@
+<div class="container" (drop)="this.dragEventService.onGlobalDrop($event, this.boardComponent)" (dragover)="this.dragEventService.onDragOver($event)">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <div class="left-section">
+        <div class="title">
+            <h3>Titre</h3>
+            <textarea [(ngModel)]="gameTitle" placeholder="Écrivez le titre du jeu ici" maxlength="20"></textarea>
+        </div>
+
+        <div class="objects-to-add">
+            <h3>Objets</h3>
+            <app-objects id="items"></app-objects>
+            <h3>Tuiles</h3>
+            <app-tiles (tileSelected)="onTileSelected($event)"></app-tiles>
+        </div>
+
+        <div class="game-description">
+            <h3>Description du jeu</h3>
+            <textarea [(ngModel)]="gameDescription" placeholder="Écrivez la description du jeu ici" maxlength="100"></textarea>
+        </div>
+
+        <section class="add-option">
+            <button class="button" (click)="saveGame()">Enregistrer</button>
+            <button class="button" (click)="resetTiles()">Réinitialiser</button>
+            <button class="button" id="cancelButton" routerLink="/admin">Annuler</button>
+        </section>
+    </div>
+
+    <div *ngIf="game?.board === null" class="board-container">
+        <app-board
+            [gameMode]="gameMode"
+            [mapSize]="mapSize"
+            [selectedTile]="selectedTile"
+            [savedBoard]="gameBoard"
+            (objectDropped)="this.objectsService.onObjectDropped($event)"
+            (objectRemoved)="this.objectsService.onObjectRemoved($event, this.objectsComponent)"
+        ></app-board>
+    </div>
+    <div *ngIf="game?.board !== null" class="board-container">
+        <app-board
+            [gameMode]="gameMode"
+            [mapSize]="mapSize"
+            [selectedTile]="selectedTile"
+            [savedBoard]="game!.board"
+            (objectDropped)="this.objectsService.onObjectDropped($event)"
+            (objectRemoved)="this.objectsService.onObjectRemoved($event, this.objectsComponent)"
+        ></app-board>
+    </div>
+</div>

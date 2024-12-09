@@ -1,0 +1,12 @@
+<h1 class="changeTitle" mat-dialog-title>Changer le titre</h1>
+<div mat-dialog-content>
+    <p style="color: #ffffff">Le titre existe déjà. Veuillez saisir un nouveau titre :</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Nouveau titre</mat-label>
+        <input matInput [(ngModel)]="data.newTitle" maxlength="32" />
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button mat-button [mat-dialog-close]="data.newTitle" [disabled]="!data.newTitle">OK</button>
+</div>

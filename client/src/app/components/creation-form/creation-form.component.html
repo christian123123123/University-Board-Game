@@ -1,0 +1,34 @@
+<div class="background-overlay" (click)="onCancel()"></div>
+<div class="dialog-container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <div (click)="onCancel()" class="button" id="cancel-button"><i class="fa fa-arrow-circle-left"></i></div>
+
+    <div class="character-avatar-stats-container">
+        <div class="characters-stats-container">
+            <div class="character-avatar-container">
+                <label for="name">Nom d'utilisateur:<input [(ngModel)]="username" id="name" type="text" maxlength="14" autocomplete="off" /></label>
+                <h1 class="avatar">Sélectionner un avatar</h1>
+                <app-characters-board (selectedCharacter)="onCharacterSelected($event)"></app-characters-board>
+
+                <div *ngIf="selectedCharacter" class="bonus-dice-container">
+                    <app-character-bonus
+                        [selectedCharacter]="selectedCharacter"
+                        (bonusApplied)="onBonusApplied($event)"
+                        (diceAssigned)="onDiceAssigned($event)"
+                    ></app-character-bonus>
+                </div>
+            </div>
+            <app-character-stats [selectedCharacter]="selectedCharacter"></app-character-stats>
+        </div>
+    </div>
+    <button
+        class="submit-button"
+        *ngIf="selectedCharacter"
+        [disabled]="!canShowSubmit()"
+        [ngClass]="{ disabled: !canShowSubmit() }"
+        (click)="onSubmit()"
+    >
+        Créer
+    </button>
+</div>

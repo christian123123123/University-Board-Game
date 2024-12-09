@@ -1,0 +1,100 @@
+<div class="container">
+    <section class="objects">
+        <div
+            class="object"
+            [draggable]="!isUsed('spaceSword')"
+            [class.used]="isUsed('spaceSword')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'spaceSword')"
+        >
+            <img src="assets/object-space-sword.png" alt="Sabre laser" />
+            <div class="object-description">Sabre laser : Aide avec l'attaque mais rend plus lourd.</div>
+        </div>
+
+        <div
+            class="object"
+            [draggable]="!isUsed('shield')"
+            [class.used]="isUsed('shield')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'shield')"
+        >
+            <img src="assets/object-shield.png" alt="Bouclier" />
+            <div class="object-description">Bouclier : Protection contre les attaques si joueur a déjà une victoire.</div>
+        </div>
+
+        <div
+            class="object"
+            [draggable]="!isUsed('boots')"
+            [class.used]="isUsed('boots')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'boots')"
+        >
+            <img src="assets/object-boots.png" alt="Bottes" />
+            <div class="object-description">Bottes : Accélèrent la vitesse de déplacement, mais diminuent la vie.</div>
+        </div>
+
+        <div
+            class="object"
+            [draggable]="!isUsed('masterKey')"
+            [class.used]="isUsed('masterKey')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'masterKey')"
+        >
+            <img src="assets/object-master-key.png" alt="Clé" />
+            <div class="object-description">Clé : Permet de traverser toutes les portes.</div>
+        </div>
+    </section>
+
+    <section class="objects">
+        <div
+            class="object"
+            [draggable]="!isUsed('powerFruit')"
+            [class.used]="isUsed('powerFruit')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'powerFruit')"
+        >
+            <img src="assets/object-Power-fruit.png" alt="Fruit de pouvoir" />
+            <div class="object-description">Fruit de pouvoir : Augmente l'attacque si joueur a aucune victoire.</div>
+        </div>
+
+        <div
+            class="object"
+            [draggable]="!isUsed('spaceSkates')"
+            [class.used]="isUsed('spaceSkates')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'spaceSkates')"
+        >
+            <img src="assets/object-space-skates.png" alt="Patins lunaires" />
+            <div class="object-description">Patins lunaires : Permettent de traverser la glace sans problème.</div>
+        </div>
+
+        <div
+            class="object"
+            [draggable]="!isUsed('universalCube')"
+            [class.used]="isUsed('universalCube')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'universalCube')"
+        >
+            <img src="assets/object-universal-cube.png" alt="Cube universel" />
+            <div class="object-description">Cube universel : Point de départ.</div>
+            <div class="item-count">x{{ this.objectsTool.universalCube.count }}</div>
+        </div>
+
+        <div
+            *ngIf="gameMode === 'capture the flag'"
+            class="object"
+            [draggable]="!isUsed('flag')"
+            [class.used]="isUsed('flag')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'flag')"
+        >
+            <img src="assets/object-flag.png" alt="Drapeau" />
+            <div class="object-description">Drapeau : Objectif.</div>
+        </div>
+    </section>
+
+    <section class="objects">
+        <div
+            class="object"
+            [draggable]="!isUsed('randomItem')"
+            [class.used]="isUsed('randomItem')"
+            (dragstart)="this.dragEventService.onDragStart($event, 'randomItem')"
+        >
+            <img src="assets/object-random-item.png" alt="Item aléatoire" />
+            <div class="object-description">Item aléatoire : ???.</div>
+            <div class="item-count">x{{ this.objectsTool.randomItem.count }}</div>
+        </div>
+    </section>
+</div>

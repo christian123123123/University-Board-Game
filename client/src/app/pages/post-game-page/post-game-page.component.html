@@ -1,0 +1,110 @@
+<div class="container justified">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+
+    <div class="header">
+        <h1>Statistiques de fin de partie</h1>
+        <button (click)="returnToHome()">Retourner au menu</button>
+    </div>
+
+    <div class="main-content">
+        <section class="stats-section">
+            <div class="table-outline">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th (click)="sortTable('username')">
+                                Joueurs
+                                <span *ngIf="currentSortColumn === 'username'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('combats')">
+                                Combats
+                                <span *ngIf="currentSortColumn === 'combats'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('escapes')">
+                                Évasions
+                                <span *ngIf="currentSortColumn === 'escapes'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('victories')">
+                                Victoires
+                                <span *ngIf="currentSortColumn === 'victories'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('losses')">
+                                Défaites
+                                <span *ngIf="currentSortColumn === 'losses'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('hpTaken')">
+                                PV infligés
+                                <span *ngIf="currentSortColumn === 'hpTaken'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('hpLost')">
+                                PV perdus
+                                <span *ngIf="currentSortColumn === 'hpLost'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('objects')">
+                                Objets ramassés
+                                <span *ngIf="currentSortColumn === 'objects'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                            <th (click)="sortTable('tilesVisited')">
+                                % Tuiles visités
+                                <span *ngIf="currentSortColumn === 'tilesVisited'">{{ isAscending ? '▼' : '▲' }}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr *ngFor="let player of sortedPlayers">
+                            <td class="player-cell">
+                                <p class="player-name">{{ player.username }}</p>
+                                <img class="player-avatar" [src]="player.character.face" [alt]="player.username + ' avatar'" />
+                            </td>
+                            <td>{{ playerCombats.get(player.username) ?? 0 }}</td>
+                            <td>{{ playerEscape.get(player.username) ?? 0 }}</td>
+                            <td>{{ playerVictories.get(player.username) ?? 0 }}</td>
+                            <td>{{ playerLosses.get(player.username) ?? 0 }}</td>
+                            <td>{{ playerHpWon.get(player.username) ?? 0 }}</td>
+                            <td>{{ playerHpLost.get(player.username) ?? 0 }}</td>
+                            <td>{{ playerObjectsCount.get(player.username) ?? 0 }}</td>
+                            <td>{{ ((playerTilesVisited.get(player.username)?.length ?? 0)/numberOfTiles) | percent:'1.1-1' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div *ngIf="activeSection === 'chat'" class="right-section">
+            <div class="sub-toggle-buttons">
+                <button class="sub-toggle-button" [class.active]="activeChatSection === 'chatBox'" (click)="showChatSection('chatBox')">
+                    Clavardage
+                </button>
+                <button class="sub-toggle-button" [class.active]="activeChatSection === 'stats'" (click)="showChatSection('stats')">
+                    Statistiques globales
+                </button>
+            </div>
+
+            <div [ngStyle]="{ display: activeChatSection === 'chatBox' ? 'block' : 'none' }" class="chat-box-container">
+                    <div class="small-chat-wrapper">
+                        <app-chat-box
+                            *ngIf="accessCode"
+                            [accessCode]="accessCode"
+                            [player]="player"
+                            [welcomeMessage]="welcomeMessage"
+                            [roomHistory]="chatRoomHistory"
+                        ></app-chat-box>
+                    </div>
+            </div>
+            <div [ngStyle]="{ display: activeChatSection === 'stats' ? 'block' : 'none' }" class="stats-container">
+                <section class="global-stats">
+                    <h2>Statistiques globales</h2>
+                    <ul>
+                        <li>Durée de la partie : {{ gameDurationMinutes }}:{{ gameDurationSeconds }}</li>
+                        <li>Nombre de tours joués : {{ totalTurns }}</li>
+                        <li>% Tuiles visitées : {{ tilesVisitedPercentage | percent:'1.1-1' }}</li>
+                        <li>% Portes manipulées : {{ (doorsManipulated/doorsInBoard) | percent:'1.1-1' }}</li>
+                        <li *ngIf="isCTFMode">Joueurs ayant détenu le drapeau : {{ flagHolders }}</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

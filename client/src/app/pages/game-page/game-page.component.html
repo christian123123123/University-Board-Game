@@ -1,0 +1,242 @@
+<div class="container">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <div class="center-container">
+        <div class="overlay" *ngIf="notification"></div>
+        <div class="notification-container" *ngIf="notification">
+            <p class="notification-message">{{ notification }}</p>
+            <img class="user-avatar-notification" [src]="activePlayer!.character.face" [alt]="activePlayer!.username + ' avatar'" />
+            <span class="user-name-notification"> Le joueur suivant sera {{ activePlayer!.username }}</span>
+        </div>
+
+        <div class="inventory-container">
+            <div class="inventory-header">
+                <h3>Inventaire</h3>
+            </div>
+            <div class="inventory-items">
+                <div *ngFor="let item of currentPlayer.inventory" class="item-slot">
+                    <img
+                        *ngIf="item"
+                        [src]="item"
+                        (click)="throwItem(item)"
+                        [class.disabled-image]="activePlayer?.username !== currentPlayer.username"
+                        alt="inventory-item"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="countdown-container">
+            <p>
+                Temps restant: <br />
+                <span
+                    [ngClass]="{
+                        'green-text': turnTimeLeft >= 20 && turnTimeLeft <= 30,
+                        'yellow-text': turnTimeLeft >= 10 && turnTimeLeft <= 19,
+                        'flashing-red-text': turnTimeLeft >= 0 && turnTimeLeft <= 9
+                    }"
+                >
+                    {{ turnTimeLeft }} secondes
+                </span>
+            </p>
+        </div>
+
+        <div class="action-interface-container">
+            <h3>Interface Action</h3>
+            <div class="action-button-container">
+                <div class="action-container">
+                    <button
+                        class="button"
+                        id="action-button"
+                        (click)="onActionClick()"
+                        [disabled]="isActionButtonDisabled || activePlayer?.username !== currentPlayer.username"
+                    >
+                        Action
+                    </button>
+                    <span
+                        matTooltip="Vous pouvez cliquer sur un joueur ou une porte pour faire une action."
+                        matTooltipPosition="above"
+                        class="tooltip-icon"
+                        aria-label="Action tooltip"
+                    >
+                        <i class="fa fa-question-circle-o"></i>
+                    </span>
+                </div>
+                <div class="end-turn-container">
+                    <button class="button" id="fin-tour-button" (click)="endTurn()" [disabled]="activePlayer?.username !== currentPlayer.username">
+                        Fin du tour
+                    </button>
+                    <span
+                        matTooltip="Vous pouvez passer votre tour."
+                        matTooltipPosition="above"
+                        class="tooltip-icon-end-turn"
+                        aria-label="Action tooltip"
+                    >
+                        <i class="fa fa-question-circle-o"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="tile-info">
+            {{ tileInfo }}
+        </div>
+    </div>
+    <div class="left-container">
+        <app-match-board
+            class="game-board"
+            [gameMode]="gameMode"
+            [mapSize]="mapSize"
+            [activePlayer]="activePlayer"
+            (tileInfo)="displayTileInfo($event)"
+        ></app-match-board>
+        <div class="map-overlay" *ngIf="activePlayer?.username !== currentPlayer.username"></div>
+    </div>
+
+    <div class="right-container">
+        <div class="toggle-buttons">
+            <button class="toggle-button" [class.active]="activeSection === 'chat'" (click)="showSection('chat')">Message</button>
+            <button class="toggle-button" [class.active]="activeSection === 'playerInfo'" (click)="showSection('playerInfo')">Info Joueur</button>
+            <button class="toggle-button" [class.active]="activeSection === 'gameInfo'" (click)="showSection('gameInfo')">Info Jeu</button>
+            <button class="toggle-button" [class.active]="activeSection === 'playerList'" (click)="showSection('playerList')">
+                Liste de Joueurs
+            </button>
+        </div>
+
+        <div *ngIf="activeSection === 'chat'" class="chat-section">
+            <div class="sub-toggle-buttons">
+                <button class="sub-toggle-button" [class.active]="activeChatSection === 'chatBox'" (click)="showChatSection('chatBox')">
+                    Clavardage
+                </button>
+                <button class="sub-toggle-button" [class.active]="activeChatSection === 'journal'" (click)="showChatSection('journal')">
+                    Journal de bord
+                </button>
+            </div>
+
+            <div [ngStyle]="{ display: activeChatSection === 'chatBox' ? 'block' : 'none' }" class="chat-box-container">
+                <div class="small-chat-wrapper">
+                    <app-chat-box
+                        *ngIf="accessCode"
+                        [accessCode]="accessCode"
+                        [player]="currentPlayer"
+                        [welcomeMessage]="welcomeMessage"
+                        [roomHistory]="chatRoomHistory"
+                    ></app-chat-box>
+                </div>
+            </div>
+            <div [ngStyle]="{ display: activeChatSection === 'journal' ? 'block' : 'none' }" class="journal-container">
+                <div class="journal-wrapper">
+                    <app-journal-box *ngIf="accessCode" [accessCode]="accessCode" [player]="currentPlayer" [roomJournal]="roomJournal">
+                    </app-journal-box>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div *ngIf="activeSection === 'chat'" class="chat-section">
+            <div class="sub-toggle-buttons">
+                <button class="sub-toggle-button" [class.active]="activeChatSection === 'chatBox'" (click)="showChatSection('chatBox')">
+                    Clavardage
+                </button>
+                <button class="sub-toggle-button" [class.active]="activeChatSection === 'journal'" (click)="showChatSection('journal')">
+                    Journal
+                </button>
+            </div>
+
+            <div [ngStyle]="{ display: activeChatSection === 'chatBox' ? 'block' : 'none' }" class="chat-box-container">
+                <app-chat-box *ngIf="accessCode" [accessCode]="accessCode" [player]="currentPlayer" [roomHistory]="chatRoomHistory"></app-chat-box>
+            </div>
+
+            <div [ngStyle]="{ display: activeChatSection === 'journal' ? 'block' : 'none' }" class="journal-container">
+                <app-journal-box *ngIf="accessCode" [accessCode]="accessCode" [player]="currentPlayer" [roomJournal]="roomJournal"></app-journal-box>
+            </div>
+        </div> -->
+
+        <div *ngIf="activeSection === 'playerInfo'" class="player-info-container">
+            <div class="player-info">
+                <div class="player-detail">
+                    <strong>Nom:</strong> <span>{{ currentPlayer.username }}</span>
+                </div>
+
+                <div *ngFor="let user of players">
+                    <div *ngIf="user.username === currentPlayer.username" class="player-detail">
+                        <strong>Avatar:</strong> <span>{{ user.character.name }}</span>
+                    </div>
+                </div>
+
+                <div *ngFor="let user of players">
+                    <div *ngIf="user.username === currentPlayer.username" class="player-detail">
+                        <strong>Dé bonus d'attaque:</strong>
+                        <span>{{ attackDie }}</span>
+                    </div>
+                </div>
+
+                <div *ngFor="let user of players">
+                    <div *ngIf="user.username === currentPlayer.username" class="player-detail">
+                        <strong>Dé bonus de défense:</strong>
+                        <span>{{ defenseDie }}</span>
+                    </div>
+                </div>
+
+                <div class="player-detail">
+                    <strong>Points de mouvement restants:</strong> <span>{{ remainingSpeed !== null ? remainingSpeed : 'Loading...' }}</span>
+                </div>
+
+                <div class="player-detail">
+                    <strong>Actions restantes:</strong> <span>{{ this.turnSystemService.actionUsed ? 0 : 1 }}</span>
+                </div>
+            </div>
+            <div *ngFor="let user of players">
+                <h1 *ngIf="user.username === currentPlayer.username">Stats du joueur</h1>
+                <div *ngIf="user.username === currentPlayer.username" class="game-route">
+                    <app-character-stats [selectedCharacter]="this.currentPlayer.character" [currentRoute]="currentRoute"></app-character-stats>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="activeSection === 'gameInfo'" class="game-info-container">
+            <h3>Information de partie</h3>
+            <div class="info-detail">
+                <strong>Taille de la carte:</strong> <span>{{ mapSize }}</span>
+            </div>
+            <div class="info-detail">
+                <strong>Nombre de joueurs:</strong> <span>{{ players?.length }}</span>
+            </div>
+            <div class="info-detail">
+                <strong>Joueur actif:</strong> <span>{{ activePlayer!.username }}</span>
+            </div>
+        </div>
+
+        <div *ngIf="activeSection === 'playerList'" class="list-container">
+            <ul>
+                <li
+                    *ngFor="let user of displayTurnOrder"
+                    [ngClass]="{
+                        'active-player': user.username === activePlayer?.username,
+                        'inactive-player': inactivePlayers.has(user.username)
+                    }"
+                >
+                    <div class="user-item" [ngClass]="{ 'flag-holder': user.character.hasFlag }">
+                        <img class="user-avatar" [src]="user.character.face" [alt]="user.username + ' avatar'" />
+                        <div class="user-info">
+                            <span class="user-name">{{ user.username }}</span>
+                            <span *ngIf="user.isAdmin" class="user-role-admin">Admin</span>
+                            <span *ngIf="!user.isAdmin && !user.isVirtual" class="user-role-player">Joueur</span>
+                            <span *ngIf="user.isVirtual" class="user-role-virtual">JV</span>
+                        </div>
+                        <div class="combat-info">
+                            <span class="combat-wins"
+                                >Combats Gagnés: <span>{{ this.playersVictories.get(user.username) ?? 0 }}</span></span
+                            >
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="sharedService.debugModeStatus$ | async" class="debug-mode-banner">
+            <h3>Mode Debug Activé</h3>
+        </div>
+        <div class="button-container">
+            <button class="button quit-button" (click)="quitGame()">Abandonner</button>
+        </div>
+    </div>
+</div>

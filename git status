@@ -1,0 +1,47 @@
+[1mdiff --git a/client/src/app/pages/main-page/main-page.component.html b/client/src/app/pages/main-page/main-page.component.html[m
+[1mindex c27b06e..07a914b 100644[m
+[1m--- a/client/src/app/pages/main-page/main-page.component.html[m
+[1m+++ b/client/src/app/pages/main-page/main-page.component.html[m
+[36m@@ -23,14 +23,14 @@[m
+             <button class="button" routerLink="/material">Voir la page démo Angular Material</button>[m
+         </div>[m
+     </section> -->[m
+[31m-<!-- [m
+[32m+[m[32m    <!--[m[41m [m
+     <button class="button" routerLink="/game">Jouer!</button> -->[m
+ [m
+     <footer class="footer-item">[m
+         <h4 class="team-name">Équipe 107</h4>[m
+         <p>[m
+[31m-            <span>Ayoub Issiakhem</span>, <span>Elias Ladaa</span>, <span>Anders Antoine</span>, [m
+[31m-            <span>Louis Bryan Ozon</span>, <span>Christian Akkary</span>[m
+[32m+[m[32m            <span>Ayoub Issiakhem</span>, <span>Elias Ladaa</span>, <span>Anders Antoine</span>, <span>Louis Bryan Ozon</span>,[m
+[32m+[m[32m            <span>Christian Akkary</span>[m
+         </p>[m
+     </footer>[m
+ </div>[m
+[1mdiff --git a/client/src/index.html b/client/src/index.html[m
+[1mindex 0469304..f63f7c6 100644[m
+[1m--- a/client/src/index.html[m
+[1m+++ b/client/src/index.html[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-<!DOCTYPE html>[m
+[32m+[m[32m<!doctype html>[m
+ <html lang="en">[m
+     <head>[m
+         <meta charset="utf-8" />[m
+[36m@@ -6,10 +6,10 @@[m
+         <base href="/" />[m
+         <meta name="viewport" content="width=device-width, initial-scale=1" />[m
+         <link rel="icon" type="image/x-icon" href="favicon.ico" />[m
+[31m-            <link rel="preconnect" href="https://fonts.gstatic.com">[m
+[31m-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">[m
+[31m-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">[m
+[31m-</head>[m
+[32m+[m[32m        <link rel="preconnect" href="https://fonts.gstatic.com" />[m
+[32m+[m[32m        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />[m
+[32m+[m[32m        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />[m
+[32m+[m[32m    </head>[m
+     <body class="mat-typography">[m
+         <app-root></app-root>[m
+     </body>[m

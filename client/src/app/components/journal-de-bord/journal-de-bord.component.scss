@@ -1,0 +1,219 @@
+* {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #00fffb;
+    text-shadow: 4px 4px 4px #f700ff;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+p {
+    color: white;
+}
+
+.outerChatContainer {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px; /* Adjusted height */
+    background: #1a1a1d;
+    color: #ddd;
+    padding: 10px; /* Reduced padding for compactness */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.messagesContainer {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #2d2d34;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.messageContainer {
+    display: flex;
+    margin: 10px 0;
+}
+
+.nameOverTextBlue {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: -3px;
+}
+
+.timeNextToText {
+    display: flex;
+    flex-direction: row;
+    gap: -3px;
+}
+
+.nameOverTextGray {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.messageBox {
+    background: #f3f3f3;
+    border-radius: 40px;
+    padding: 0px 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-top: 4px;
+    line-height: 1.5;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.messageText {
+    width: 100%;
+    letter-spacing: 0;
+    float: left;
+    font-size: 1.1em;
+    word-wrap: break-word;
+}
+
+.serverMessage {
+    color: #e4e4e4;
+    font-style: italic;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin: 5px 5px;
+    text-align: center;
+}
+
+.sentText {
+    display: flex;
+    align-items: center;
+    font-family: Helvetica;
+    color: #828282;
+    letter-spacing: 0.3px;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+.sentTextTime {
+    display: flex;
+    align-items: center;
+    font-family: Helvetica;
+    font-size: 12px;
+    color: #828282;
+    letter-spacing: 0.3px;
+    margin: 10px;
+}
+
+.backgroundBlue {
+    background-color: #0078ff;
+}
+
+.backgroundLight {
+    background-color: #e0e0e0;
+}
+
+.backgroundEmpty {
+    background: none;
+}
+
+.colorWhite {
+    color: white;
+    font-size: 17px;
+}
+
+.colorLight {
+    color: gray;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.colorDark {
+    color: #353535;
+}
+
+.justifyStart {
+    justify-content: flex-start;
+}
+
+.justifyEnd {
+    justify-content: flex-end;
+}
+
+.justifyCenter {
+    justify-content: center;
+}
+
+.inputBox {
+    display: flex;
+    align-items: center;
+    background-color: #393e46;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #2d2d34;
+    color: #ddd;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+input::placeholder {
+    color: #888;
+}
+
+.sendButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    background-color: rgb(0, 128, 255);
+}
+
+.paperPlane {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+::-webkit-scrollbar {
+    width: 30px;
+}
+
+::-webkit-scrollbar-track {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #f1f1f100;
+    border-radius: 0px 35px 35px 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,35 @@
+:host {
+    display: block;
+    background-color: #212121; /* Fond noir */
+    color: #ffffff; /* Texte blanc par défaut */
+    /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Ombre subtile */
+    padding: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+.changeTitle {
+    color: aqua;
+}
+mat-label {
+    color: #000000 !important; /* Titre du champ en noir */
+}
+
+p {
+    color: #ffffff; /* Texte de "Le titre existe déjà" en blanc */
+}
+
+button {
+    color: #ffffff; /* Couleur du texte des boutons */
+}
+
+button[mat-button] {
+    background-color: #424242; /* Bouton sombre */
+    border: 1px solid #ffffff; /* Bordure blanche */
+}
+
+button[mat-button]:hover {
+    background-color: #616161; /* Couleur plus claire au survol */
+}

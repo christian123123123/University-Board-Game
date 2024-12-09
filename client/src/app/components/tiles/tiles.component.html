@@ -1,0 +1,15 @@
+<div class="container">
+    <section class="objects">
+        <div *ngFor="let tile of tiles" class="object" [class.selected]="selectedTileUrl?.fieldTile === tile.fieldTile" (click)="selectTile(tile)">
+            <img [src]="tile.fieldTile" draggable="false" alt="Tile" />
+            <div class="tile-description">
+                <ng-container *ngIf="tile.fieldTile === 'assets/water-tiles.png'">Tuile d'eau : Utilisée pour les rivières et lacs.</ng-container>
+                <ng-container *ngIf="tile.fieldTile === 'assets/wall-tiles.png'">Tuile de mur : Parfait pour les fortifications.</ng-container>
+                <ng-container *ngIf="tile.fieldTile === 'assets/ice-tiles.png'"
+                    >Tuile de glace : Glissante, parfaite pour les zones froides.</ng-container
+                >
+                <ng-container *ngIf="tile.fieldTile === 'assets/door-tilesV2.0.png'">Tuile de porte : Un point d'entrée ou de sortie.</ng-container>
+            </div>
+        </div>
+    </section>
+</div>

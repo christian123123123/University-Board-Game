@@ -1,0 +1,36 @@
+h1 {
+    font-size: 45px;
+    color: #00fffb;
+    text-shadow: 4px 4px 4px #f700ff;
+}
+
+.add-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+
+.add-option button {
+    cursor: url('../../../assets/cursor.png'), auto;
+    background-color: rgba(1, 1, 1, 0);
+    color: white;
+    width: 350px;
+    height: 50px;
+    font-size: 17px;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 2px solid white;
+    font-family: 'Orbitron', sans-serif;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.add-option button:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    box-shadow: 0px 4px 10px #00fffb;
+}

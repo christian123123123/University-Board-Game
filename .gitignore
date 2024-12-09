@@ -1,0 +1,35 @@
+#ignoring .vscode folder but we keep some files for debuging
+/.vscode/chrome
+/.vs/
+
+package-lock.json
+.DS_Store
+
+# Code Coverage Folder
+coverage/
+
+#Node Modules
+/node_modules
+
+# Build/Production
+build/
+dist/
+
+# Logs
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
+
+# OS-Specific
+.DS_Store
+Thumbs.db
+
+# Secrets and Environment Variables
+.env
+*.env
+amazon-cloudwatch-agent-config.json
+
+# GitLab CI (if you're not using GitLab)
+.gitlab-ci.yml
